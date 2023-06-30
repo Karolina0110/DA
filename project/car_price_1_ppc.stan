@@ -13,7 +13,7 @@ parameters {
 model {
   // Priors
   alpha ~ normal(35000, 1000);
-  beta1 ~ normal(-0.2, 0.1);
+  beta1 ~ normal(-0.4, 0.1);
   beta2 ~ normal(25, 2);
 }
 

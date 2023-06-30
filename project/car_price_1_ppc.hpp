@@ -17,7 +17,7 @@ static constexpr std::array<const char*, 17> locations_array__ =
  " (in '/home/DA/project/car_price_1_ppc.stan', line 25, column 4 to column 82)",
  " (in '/home/DA/project/car_price_1_ppc.stan', line 24, column 17 to line 26, column 3)",
  " (in '/home/DA/project/car_price_1_ppc.stan', line 24, column 2 to line 26, column 3)",
- " (in '/home/DA/project/car_price_1_ppc.stan', line 15, column 2 to column 30)",
+ " (in '/home/DA/project/car_price_1_ppc.stan', line 15, column 2 to column 33)",
  " (in '/home/DA/project/car_price_1_ppc.stan', line 16, column 2 to column 28)",
  " (in '/home/DA/project/car_price_1_ppc.stan', line 17, column 2 to column 24)",
  " (in '/home/DA/project/car_price_1_ppc.stan', line 2, column 4 to column 19)",
@@ -166,9 +166,10 @@ class car_price_1_ppc_model final : public model_base_crtp<car_price_1_ppc_model
                 0, lp__);
       {
         current_statement__ = 8;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 35000, 1000));
+        lp_accum__.add(
+          stan::math::lognormal_lpdf<propto__>(alpha, 35000, 1000));
         current_statement__ = 9;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.2, 0.1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.4, 0.1));
         current_statement__ = 10;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 25, 2));
       }
