@@ -8,11 +8,24 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 4> locations_array__ = 
+static constexpr std::array<const char*, 17> locations_array__ = 
 {" (found before start of program)",
- " (in '/home/DA/project/test.stan', line 2, column 2 to column 37)",
- " (in '/home/DA/project/test.stan', line 3, column 2 to column 45)",
- " (in '/home/DA/project/test.stan', line 4, column 2 to column 41)"};
+ " (in '/home/DA/project/test.stan', line 2, column 2 to column 13)",
+ " (in '/home/DA/project/test.stan', line 3, column 2 to column 13)",
+ " (in '/home/DA/project/test.stan', line 4, column 2 to column 13)",
+ " (in '/home/DA/project/test.stan', line 5, column 2 to column 15)",
+ " (in '/home/DA/project/test.stan', line 6, column 2 to column 23)",
+ " (in '/home/DA/project/test.stan', line 7, column 2 to column 14)",
+ " (in '/home/DA/project/test.stan', line 8, column 2 to column 13)",
+ " (in '/home/DA/project/test.stan', line 9, column 2 to column 13)",
+ " (in '/home/DA/project/test.stan', line 11, column 2 to column 27)",
+ " (in '/home/DA/project/test.stan', line 12, column 2 to column 27)",
+ " (in '/home/DA/project/test.stan', line 13, column 2 to column 27)",
+ " (in '/home/DA/project/test.stan', line 14, column 2 to column 26)",
+ " (in '/home/DA/project/test.stan', line 16, column 2 to column 28)",
+ " (in '/home/DA/project/test.stan', line 17, column 2 to column 36)",
+ " (in '/home/DA/project/test.stan', line 20, column 2 to column 66)",
+ " (in '/home/DA/project/test.stan', line 21, column 2 to column 36)"};
 
 
 
@@ -114,20 +127,39 @@ class test_model final : public model_base_crtp<test_model> {
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      double mi = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 1;
-      mi = stan::math::normal_rng(35000, 10000, base_rng__);
+      double alpha = std::numeric_limits<double>::quiet_NaN();
+      double beta1 = std::numeric_limits<double>::quiet_NaN();
+      double beta2 = std::numeric_limits<double>::quiet_NaN();
+      double mileage = std::numeric_limits<double>::quiet_NaN();
+      double production_year = std::numeric_limits<double>::quiet_NaN();
+      double lambda = std::numeric_limits<double>::quiet_NaN();
+      double price = std::numeric_limits<double>::quiet_NaN();
       double sigma = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 2;
-      sigma = stan::math::gamma_rng(10000, 50, base_rng__);
-      double prize_sim = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 3;
-      prize_sim = stan::math::normal_rng(mi, sigma, base_rng__);
-      current_statement__ = 2;
-      stan::math::check_greater_or_equal(function__, "sigma", sigma, 0);
-      out__.write(mi);
+      current_statement__ = 9;
+      alpha = stan::math::normal_rng(10, 2, base_rng__);
+      current_statement__ = 10;
+      beta1 = stan::math::normal_rng(0, 1, base_rng__);
+      current_statement__ = 11;
+      beta2 = stan::math::normal_rng(0, 1, base_rng__);
+      current_statement__ = 12;
+      sigma = stan::math::normal_rng(0, 1, base_rng__);
+      current_statement__ = 13;
+      mileage = stan::math::normal_rng(0, 1, base_rng__);
+      current_statement__ = 14;
+      production_year = stan::math::normal_rng(0, 1, base_rng__);
+      current_statement__ = 15;
+      lambda = stan::math::exp(
+                 ((alpha + (beta1 * mileage)) + (beta2 * production_year)));
+      current_statement__ = 16;
+      price = stan::math::normal_rng(lambda, sigma, base_rng__);
+      out__.write(alpha);
+      out__.write(beta1);
+      out__.write(beta2);
+      out__.write(mileage);
+      out__.write(production_year);
+      out__.write(lambda);
+      out__.write(price);
       out__.write(sigma);
-      out__.write(prize_sim);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -155,14 +187,17 @@ class test_model final : public model_base_crtp<test_model> {
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"mi", "sigma", "prize_sim"};
+    names__ = std::vector<std::string>{"alpha", "beta1", "beta2", "mileage",
+      "production_year", "lambda", "price", "sigma"};
     
     } // get_param_names() 
     
   inline void get_dims(std::vector<std::vector<size_t>>& dimss__) const {
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
-      std::vector<size_t>{}, std::vector<size_t>{}};
+      std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{}};
     
     } // get_dims() 
     
@@ -178,9 +213,14 @@ class test_model final : public model_base_crtp<test_model> {
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "mi");
+      param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "beta1");
+      param_names__.emplace_back(std::string() + "beta2");
+      param_names__.emplace_back(std::string() + "mileage");
+      param_names__.emplace_back(std::string() + "production_year");
+      param_names__.emplace_back(std::string() + "lambda");
+      param_names__.emplace_back(std::string() + "price");
       param_names__.emplace_back(std::string() + "sigma");
-      param_names__.emplace_back(std::string() + "prize_sim");
     }
     
     } // constrained_param_names() 
@@ -197,22 +237,27 @@ class test_model final : public model_base_crtp<test_model> {
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "mi");
+      param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "beta1");
+      param_names__.emplace_back(std::string() + "beta2");
+      param_names__.emplace_back(std::string() + "mileage");
+      param_names__.emplace_back(std::string() + "production_year");
+      param_names__.emplace_back(std::string() + "lambda");
+      param_names__.emplace_back(std::string() + "price");
       param_names__.emplace_back(std::string() + "sigma");
-      param_names__.emplace_back(std::string() + "prize_sim");
     }
     
     } // unconstrained_param_names() 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"mi\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"prize_sim\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"mileage\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"production_year\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"price\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"mi\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"prize_sim\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"mileage\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"production_year\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"price\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -228,7 +273,7 @@ class test_model final : public model_base_crtp<test_model> {
       const size_t num_params__ = 0;
       const size_t num_transformed = 0;
       const size_t num_gen_quantities = 
-  ((1 + 1) + 1);
+  (((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1);
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -249,7 +294,7 @@ class test_model final : public model_base_crtp<test_model> {
       const size_t num_params__ = 0;
       const size_t num_transformed = 0;
       const size_t num_gen_quantities = 
-  ((1 + 1) + 1);
+  (((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1);
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));

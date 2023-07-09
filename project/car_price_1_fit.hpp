@@ -8,21 +8,25 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 22> locations_array__ = 
+static constexpr std::array<const char*, 27> locations_array__ = 
 {" (found before start of program)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 9, column 2 to column 22)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 10, column 2 to column 13)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 11, column 2 to column 22)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 12, column 2 to column 22)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 27, column 2 to column 24)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 29, column 4 to column 78)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 28, column 17 to line 30, column 3)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 28, column 2 to line 30, column 3)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 29, column 2 to column 24)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 30, column 2 to column 20)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 33, column 4 to column 82)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 34, column 4 to column 78)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 32, column 17 to line 35, column 3)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 32, column 2 to line 35, column 3)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 17, column 2 to column 30)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 18, column 2 to column 28)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 18, column 2 to column 29)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 19, column 2 to column 24)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 20, column 2 to column 24)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 23, column 2 to column 53)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 24, column 4 to column 64)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 23, column 16 to line 25, column 3)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 23, column 2 to line 25, column 3)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 2, column 2 to column 17)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 3, column 9 to column 10)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 3, column 2 to column 15)",
@@ -30,7 +34,8 @@ static constexpr std::array<const char*, 22> locations_array__ =
  " (in '/home/DA/project/car_price_1_fit.stan', line 4, column 2 to column 15)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 5, column 9 to column 10)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 5, column 2 to column 14)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 27, column 9 to column 10)"};
+ " (in '/home/DA/project/car_price_1_fit.stan', line 29, column 9 to column 10)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 30, column 9 to column 10)"};
 
 
 
@@ -71,19 +76,19 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 14;
+      current_statement__ = 18;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 14;
+      current_statement__ = 18;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 14;
+      current_statement__ = 18;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 15;
+      current_statement__ = 19;
       stan::math::validate_non_negative_index("x1", "N", N);
-      current_statement__ = 16;
+      current_statement__ = 20;
       context__.validate_dims("data initialization","x1","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       x1__ = 
@@ -93,22 +98,22 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       
       {
         std::vector<local_scalar_t__> x1_flat__;
-        current_statement__ = 16;
+        current_statement__ = 20;
         x1_flat__ = context__.vals_r("x1");
-        current_statement__ = 16;
+        current_statement__ = 20;
         pos__ = 1;
-        current_statement__ = 16;
+        current_statement__ = 20;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 16;
+          current_statement__ = 20;
           stan::model::assign(x1, x1_flat__[(pos__ - 1)],
             "assigning variable x1", stan::model::index_uni(sym1__));
-          current_statement__ = 16;
+          current_statement__ = 20;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 17;
+      current_statement__ = 21;
       stan::math::validate_non_negative_index("x2", "N", N);
-      current_statement__ = 18;
+      current_statement__ = 22;
       context__.validate_dims("data initialization","x2","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       x2__ = 
@@ -118,22 +123,22 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       
       {
         std::vector<local_scalar_t__> x2_flat__;
-        current_statement__ = 18;
+        current_statement__ = 22;
         x2_flat__ = context__.vals_r("x2");
-        current_statement__ = 18;
+        current_statement__ = 22;
         pos__ = 1;
-        current_statement__ = 18;
+        current_statement__ = 22;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 18;
+          current_statement__ = 22;
           stan::model::assign(x2, x2_flat__[(pos__ - 1)],
             "assigning variable x2", stan::model::index_uni(sym1__));
-          current_statement__ = 18;
+          current_statement__ = 22;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 19;
+      current_statement__ = 23;
       stan::math::validate_non_negative_index("y", "N", N);
-      current_statement__ = 20;
+      current_statement__ = 24;
       context__.validate_dims("data initialization","y","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       y__ = 
@@ -143,21 +148,23 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       
       {
         std::vector<local_scalar_t__> y_flat__;
-        current_statement__ = 20;
+        current_statement__ = 24;
         y_flat__ = context__.vals_r("y");
-        current_statement__ = 20;
+        current_statement__ = 24;
         pos__ = 1;
-        current_statement__ = 20;
+        current_statement__ = 24;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 20;
+          current_statement__ = 24;
           stan::model::assign(y, y_flat__[(pos__ - 1)],
             "assigning variable y", stan::model::index_uni(sym1__));
-          current_statement__ = 20;
+          current_statement__ = 24;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 21;
+      current_statement__ = 25;
       stan::math::validate_non_negative_index("y_generated", "N", N);
+      current_statement__ = 26;
+      stan::math::validate_non_negative_index("log_lik", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -199,20 +206,28 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       {
-        current_statement__ = 9;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 35000, 1000));
-        current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.4, 0.1));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 25, 2));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 35000, 1000));
         current_statement__ = 12;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 10));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.17, 0.1));
         current_statement__ = 13;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(y,
-            stan::math::add(
-              stan::math::add(alpha, stan::math::multiply(beta1, x1)),
-              stan::math::multiply(beta2, x2)), sigma));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 25, 2));
+        current_statement__ = 14;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 10));
+        current_statement__ = 17;
+        for (int i = 1; i <= N; ++i) {
+          current_statement__ = 15;
+          lp_accum__.add(
+            stan::math::normal_lpdf<propto__>(
+              stan::model::rvalue(y, "y", stan::model::index_uni(i)),
+              ((alpha +
+                 (beta1 *
+                   stan::model::rvalue(x1, "x1", stan::model::index_uni(i))))
+                +
+                (beta2 *
+                  stan::model::rvalue(x2, "x2", stan::model::index_uni(i)))),
+              sigma));
+        }
       }
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -276,9 +291,22 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       Eigen::Matrix<double, -1, 1> y_generated =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 8;
+      Eigen::Matrix<double, -1, 1> log_lik =
+         Eigen::Matrix<double, -1, 1>::Constant(N,
+           std::numeric_limits<double>::quiet_NaN());
+      current_statement__ = 10;
       for (int i = 1; i <= N; ++i) {
-        current_statement__ = 6;
+        current_statement__ = 7;
+        stan::model::assign(log_lik,
+          stan::math::normal_lpdf<false>(
+            stan::model::rvalue(y, "y", stan::model::index_uni(i)),
+            ((alpha +
+               (beta1 *
+                 stan::model::rvalue(x1, "x1", stan::model::index_uni(i)))) +
+              (beta2 *
+                stan::model::rvalue(x2, "x2", stan::model::index_uni(i)))),
+            sigma), "assigning variable log_lik", stan::model::index_uni(i));
+        current_statement__ = 8;
         stan::model::assign(y_generated,
           stan::math::normal_rng(
             ((alpha +
@@ -290,6 +318,7 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
           "assigning variable y_generated", stan::model::index_uni(i));
       }
       out__.write(y_generated);
+      out__.write(log_lik);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -330,7 +359,7 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
   inline void get_param_names(std::vector<std::string>& names__) const {
     
     names__ = std::vector<std::string>{"alpha", "beta1", "beta2", "sigma",
-      "y_generated"};
+      "y_generated", "log_lik"};
     
     } // get_param_names() 
     
@@ -338,7 +367,8 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
-      }, std::vector<size_t>{static_cast<size_t>(N)}};
+      }, std::vector<size_t>{static_cast<size_t>(N)},
+      std::vector<size_t>{static_cast<size_t>(N)}};
     
     } // get_dims() 
     
@@ -360,6 +390,11 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_generated" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -386,19 +421,24 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
           param_names__.emplace_back(std::string() + "y_generated" + '.' + std::to_string(sym1__));
         } 
       }
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
+        } 
+      }
     }
     
     } // unconstrained_param_names() 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -414,7 +454,8 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = N;
+      const size_t num_gen_quantities = 
+  (N + N);
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -435,7 +476,8 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = N;
+      const size_t num_gen_quantities = 
+  (N + N);
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));

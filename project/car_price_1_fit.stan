@@ -15,17 +15,22 @@ parameters {
 model {
   // Priors
   alpha ~ normal(35000, 1000);
-  beta1 ~ normal(-0.4, 0.1);
+  beta1 ~ normal(-0.17, 0.1);
   beta2 ~ normal(25, 2);
   sigma ~ normal(0, 10);
   
   // Likelihood
-  y ~ normal(alpha + beta1 * x1 + beta2 * x2, sigma);
+  for (i in 1:N){
+    y[i] ~ normal(alpha + beta1 * x1[i] + beta2 * x2[i], sigma);
+  }
 }
 
 generated quantities {
   vector[N] y_generated;
+  vector[N] log_lik;
+  
   for (i in 1:N) {
+    log_lik[i] = normal_lpdf(y[i] | alpha + beta1 * x1[i] + beta2 * x2[i], sigma);
     y_generated[i] = normal_rng(alpha + beta1 * x1[i] + beta2 * x2[i], sigma);
   }
 }
