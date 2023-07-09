@@ -8,32 +8,28 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 25> locations_array__ = 
+static constexpr std::array<const char*, 21> locations_array__ = 
 {" (found before start of program)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 8, column 2 to column 10)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 9, column 2 to column 10)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 10, column 2 to column 18)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 11, column 2 to column 18)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 33, column 2 to column 26)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 36, column 4 to column 39)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 35, column 17 to line 37, column 3)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 35, column 2 to line 37, column 3)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 15, column 9 to column 10)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 15, column 2 to column 28)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 18, column 2 to column 27)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 19, column 2 to column 21)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 20, column 2 to column 18)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 21, column 2 to column 18)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 25, column 4 to column 67)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 24, column 17 to line 26, column 3)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 24, column 2 to line 26, column 3)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 29, column 2 to column 32)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 2, column 2 to column 17)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 3, column 9 to column 10)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 3, column 2 to column 20)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 4, column 9 to column 10)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 4, column 2 to column 28)",
- " (in '/home/DA/project/car_price_2_ppc.stan', line 33, column 9 to column 10)"};
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 9, column 2 to column 22)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 10, column 2 to column 13)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 11, column 2 to column 22)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 12, column 2 to column 22)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 24, column 2 to column 24)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 25, column 2 to column 23)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 29, column 4 to column 84)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 30, column 4 to column 41)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 28, column 17 to line 31, column 3)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 28, column 2 to line 31, column 3)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 17, column 2 to column 30)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 18, column 2 to column 30)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 19, column 2 to column 24)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 20, column 2 to column 23)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 2, column 4 to column 19)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 3, column 11 to column 12)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 3, column 4 to column 21)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 4, column 11 to column 12)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 4, column 4 to column 21)",
+ " (in '/home/DA/project/car_price_2_ppc.stan', line 24, column 9 to column 10)"};
 
 
 
@@ -42,10 +38,10 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
 
  private:
   int N;
-  Eigen::Matrix<double, -1, 1> mileage__;
-  Eigen::Matrix<double, -1, 1> production_year__; 
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> mileage{nullptr, 0};
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> production_year{nullptr, 0};
+  Eigen::Matrix<double, -1, 1> x1_new__;
+  Eigen::Matrix<double, -1, 1> x2_new__; 
+  Eigen::Map<Eigen::Matrix<double, -1, 1>> x1_new{nullptr, 0};
+  Eigen::Map<Eigen::Matrix<double, -1, 1>> x2_new{nullptr, 0};
  
  public:
   ~car_price_2_ppc_model() { }
@@ -72,71 +68,70 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 19;
+      current_statement__ = 15;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 19;
+      current_statement__ = 15;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 19;
+      current_statement__ = 15;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 20;
-      stan::math::validate_non_negative_index("mileage", "N", N);
-      current_statement__ = 21;
-      context__.validate_dims("data initialization","mileage","double",
+      current_statement__ = 16;
+      stan::math::validate_non_negative_index("x1_new", "N", N);
+      current_statement__ = 17;
+      context__.validate_dims("data initialization","x1_new","double",
            std::vector<size_t>{static_cast<size_t>(N)});
-      mileage__ = 
+      x1_new__ = 
         Eigen::Matrix<double, -1, 1>::Constant(N,
           std::numeric_limits<double>::quiet_NaN());
-      new (&mileage) Eigen::Map<Eigen::Matrix<double, -1, 1>>(mileage__.data(), N);
+      new (&x1_new) Eigen::Map<Eigen::Matrix<double, -1, 1>>(x1_new__.data(), N);
         
       
       {
-        std::vector<local_scalar_t__> mileage_flat__;
-        current_statement__ = 21;
-        mileage_flat__ = context__.vals_r("mileage");
-        current_statement__ = 21;
+        std::vector<local_scalar_t__> x1_new_flat__;
+        current_statement__ = 17;
+        x1_new_flat__ = context__.vals_r("x1_new");
+        current_statement__ = 17;
         pos__ = 1;
-        current_statement__ = 21;
+        current_statement__ = 17;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 21;
-          stan::model::assign(mileage, mileage_flat__[(pos__ - 1)],
-            "assigning variable mileage", stan::model::index_uni(sym1__));
-          current_statement__ = 21;
+          current_statement__ = 17;
+          stan::model::assign(x1_new, x1_new_flat__[(pos__ - 1)],
+            "assigning variable x1_new", stan::model::index_uni(sym1__));
+          current_statement__ = 17;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 22;
-      stan::math::validate_non_negative_index("production_year", "N", N);
-      current_statement__ = 23;
-      context__.validate_dims("data initialization","production_year",
-          "double", std::vector<size_t>{static_cast<size_t>(N)});
-      production_year__ = 
+      current_statement__ = 18;
+      stan::math::validate_non_negative_index("x2_new", "N", N);
+      current_statement__ = 19;
+      context__.validate_dims("data initialization","x2_new","double",
+           std::vector<size_t>{static_cast<size_t>(N)});
+      x2_new__ = 
         Eigen::Matrix<double, -1, 1>::Constant(N,
           std::numeric_limits<double>::quiet_NaN());
-      new (&production_year) Eigen::Map<Eigen::Matrix<double, -1, 1>>(production_year__.data(), N);
+      new (&x2_new) Eigen::Map<Eigen::Matrix<double, -1, 1>>(x2_new__.data(), N);
         
       
       {
-        std::vector<local_scalar_t__> production_year_flat__;
-        current_statement__ = 23;
-        production_year_flat__ = context__.vals_r("production_year");
-        current_statement__ = 23;
+        std::vector<local_scalar_t__> x2_new_flat__;
+        current_statement__ = 19;
+        x2_new_flat__ = context__.vals_r("x2_new");
+        current_statement__ = 19;
         pos__ = 1;
-        current_statement__ = 23;
+        current_statement__ = 19;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 23;
-          stan::model::assign(production_year,
-            production_year_flat__[(pos__ - 1)],
-            "assigning variable production_year", stan::model::index_uni(sym1__));
-          current_statement__ = 23;
+          current_statement__ = 19;
+          stan::model::assign(x2_new, x2_new_flat__[(pos__ - 1)],
+            "assigning variable x2_new", stan::model::index_uni(sym1__));
+          current_statement__ = 19;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 24;
-      stan::math::validate_non_negative_index("price_samples", "N", N);
+      current_statement__ = 20;
+      stan::math::validate_non_negative_index("y_generated", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -162,48 +157,30 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     (void) function__;  // suppress unused var warning
     
     try {
-      local_scalar_t__ c1 = DUMMY_VAR__;
+      local_scalar_t__ alpha = DUMMY_VAR__;
       current_statement__ = 1;
-      c1 = in__.template read<local_scalar_t__>();
-      local_scalar_t__ c2 = DUMMY_VAR__;
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      local_scalar_t__ beta1 = DUMMY_VAR__;
       current_statement__ = 2;
-      c2 = in__.template read<local_scalar_t__>();
-      local_scalar_t__ a = DUMMY_VAR__;
+      beta1 = in__.template read<local_scalar_t__>();
+      local_scalar_t__ beta2 = DUMMY_VAR__;
       current_statement__ = 3;
-      a = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
-            lp__);
-      local_scalar_t__ b = DUMMY_VAR__;
+      beta2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      local_scalar_t__ sigma = DUMMY_VAR__;
       current_statement__ = 4;
-      b = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
-            lp__);
+      sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       {
-        current_statement__ = 9;
-        stan::math::validate_non_negative_index("price_estimated", "N", N);
-        Eigen::Matrix<local_scalar_t__, -1, 1> price_estimated =
-           Eigen::Matrix<local_scalar_t__, -1, 1>::Constant(N, DUMMY_VAR__);
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(c1, -0.17, 0.02));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 20000, 1000));
         current_statement__ = 12;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(c2, 20, 3));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.17, 0.01));
         current_statement__ = 13;
-        lp_accum__.add(stan::math::gamma_lpdf<propto__>(a, 1, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 20, 3));
         current_statement__ = 14;
-        lp_accum__.add(stan::math::gamma_lpdf<propto__>(b, 1, 1));
-        current_statement__ = 17;
-        for (int i = 1; i <= N; ++i) {
-          current_statement__ = 15;
-          stan::model::assign(price_estimated,
-            ((c1 *
-               stan::model::rvalue(mileage, "mileage",
-                 stan::model::index_uni(i))) +
-              (c2 *
-                stan::model::rvalue(production_year, "production_year",
-                  stan::model::index_uni(i)))),
-            "assigning variable price_estimated", stan::model::index_uni(i));
-        }
-        current_statement__ = 18;
-        lp_accum__.add(
-          stan::math::gamma_lpdf<propto__>(price_estimated, a, b));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 10));
       }
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -237,24 +214,25 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     (void) function__;  // suppress unused var warning
     
     try {
-      double c1 = std::numeric_limits<double>::quiet_NaN();
+      double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      c1 = in__.template read<local_scalar_t__>();
-      double c2 = std::numeric_limits<double>::quiet_NaN();
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      double beta1 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      c2 = in__.template read<local_scalar_t__>();
-      double a = std::numeric_limits<double>::quiet_NaN();
+      beta1 = in__.template read<local_scalar_t__>();
+      double beta2 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      a = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
-            lp__);
-      double b = std::numeric_limits<double>::quiet_NaN();
+      beta2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 4;
-      b = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
-            lp__);
-      out__.write(c1);
-      out__.write(c2);
-      out__.write(a);
-      out__.write(b);
+      sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      out__.write(alpha);
+      out__.write(beta1);
+      out__.write(beta2);
+      out__.write(sigma);
       if (stan::math::logical_negation((stan::math::primitive_value(
             emit_transformed_parameters__) || stan::math::primitive_value(
             emit_generated_quantities__)))) {
@@ -263,17 +241,31 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      Eigen::Matrix<double, -1, 1> price_samples =
+      Eigen::Matrix<double, -1, 1> y_generated =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 8;
+      double lambda = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 10;
       for (int i = 1; i <= N; ++i) {
-        current_statement__ = 6;
-        stan::model::assign(price_samples,
-          stan::math::gamma_rng(a, b, base_rng__),
-          "assigning variable price_samples", stan::model::index_uni(i));
+        current_statement__ = 7;
+        lambda = stan::math::fabs(
+                   stan::math::normal_rng(
+                     ((alpha +
+                        (beta1 *
+                          stan::model::rvalue(x1_new, "x1_new",
+                            stan::model::index_uni(i)))) +
+                       (beta2 *
+                         stan::model::rvalue(x2_new, "x2_new",
+                           stan::model::index_uni(i)))), sigma, base_rng__));
+        current_statement__ = 8;
+        stan::model::assign(y_generated,
+          stan::math::poisson_rng(lambda, base_rng__),
+          "assigning variable y_generated", stan::model::index_uni(i));
       }
-      out__.write(price_samples);
+      current_statement__ = 6;
+      stan::math::check_greater_or_equal(function__, "lambda", lambda, 0);
+      out__.write(y_generated);
+      out__.write(lambda);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -294,18 +286,18 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      local_scalar_t__ c1 = DUMMY_VAR__;
-      c1 = in__.read<local_scalar_t__>();
-      out__.write(c1);
-      local_scalar_t__ c2 = DUMMY_VAR__;
-      c2 = in__.read<local_scalar_t__>();
-      out__.write(c2);
-      local_scalar_t__ a = DUMMY_VAR__;
-      a = in__.read<local_scalar_t__>();
-      out__.write_free_lb(0, a);
-      local_scalar_t__ b = DUMMY_VAR__;
-      b = in__.read<local_scalar_t__>();
-      out__.write_free_lb(0, b);
+      local_scalar_t__ alpha = DUMMY_VAR__;
+      alpha = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, alpha);
+      local_scalar_t__ beta1 = DUMMY_VAR__;
+      beta1 = in__.read<local_scalar_t__>();
+      out__.write(beta1);
+      local_scalar_t__ beta2 = DUMMY_VAR__;
+      beta2 = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, beta2);
+      local_scalar_t__ sigma = DUMMY_VAR__;
+      sigma = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, sigma);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -313,8 +305,8 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"c1", "c2", "a", "b",
-      "price_samples"};
+    names__ = std::vector<std::string>{"alpha", "beta1", "beta2", "sigma",
+      "y_generated", "lambda"};
     
     } // get_param_names() 
     
@@ -322,7 +314,8 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
-      }, std::vector<size_t>{static_cast<size_t>(N)}};
+      }, std::vector<size_t>{static_cast<size_t>(N)}, std::vector<size_t>{
+      }};
     
     } // get_dims() 
     
@@ -332,10 +325,10 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
                                       bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "c1");
-    param_names__.emplace_back(std::string() + "c2");
-    param_names__.emplace_back(std::string() + "a");
-    param_names__.emplace_back(std::string() + "b");
+    param_names__.emplace_back(std::string() + "alpha");
+    param_names__.emplace_back(std::string() + "beta1");
+    param_names__.emplace_back(std::string() + "beta2");
+    param_names__.emplace_back(std::string() + "sigma");
     if (emit_transformed_parameters__) {
       
     }
@@ -343,9 +336,10 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     if (emit_generated_quantities__) {
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "price_samples" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y_generated" + '.' + std::to_string(sym1__));
         } 
       }
+      param_names__.emplace_back(std::string() + "lambda");
     }
     
     } // constrained_param_names() 
@@ -356,10 +350,10 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
                                         bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "c1");
-    param_names__.emplace_back(std::string() + "c2");
-    param_names__.emplace_back(std::string() + "a");
-    param_names__.emplace_back(std::string() + "b");
+    param_names__.emplace_back(std::string() + "alpha");
+    param_names__.emplace_back(std::string() + "beta1");
+    param_names__.emplace_back(std::string() + "beta2");
+    param_names__.emplace_back(std::string() + "sigma");
     if (emit_transformed_parameters__) {
       
     }
@@ -367,22 +361,23 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
     if (emit_generated_quantities__) {
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "price_samples" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y_generated" + '.' + std::to_string(sym1__));
         } 
       }
+      param_names__.emplace_back(std::string() + "lambda");
     }
     
     } // unconstrained_param_names() 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"c1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"c2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"a\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"b\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"price_samples\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"c1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"c2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"a\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"b\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"price_samples\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_generated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -398,7 +393,8 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = N;
+      const size_t num_gen_quantities = 
+  (N + 1);
       std::vector<double> vars_vec(num_params__
        + (emit_transformed_parameters * num_transformed)
        + (emit_generated_quantities * num_gen_quantities));
@@ -419,7 +415,8 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
       const size_t num_params__ = 
   (((1 + 1) + 1) + 1);
       const size_t num_transformed = 0;
-      const size_t num_gen_quantities = N;
+      const size_t num_gen_quantities = 
+  (N + 1);
       vars.resize(num_params__
         + (emit_transformed_parameters * num_transformed)
         + (emit_generated_quantities * num_gen_quantities));
@@ -455,7 +452,8 @@ class car_price_2_ppc_model final : public model_base_crtp<car_price_2_ppc_model
                               std::vector<int>& params_i,
                               std::vector<double>& vars,
                               std::ostream* pstream__ = nullptr) const {
-     constexpr std::array<const char*, 4> names__{"c1", "c2", "a", "b"};
+     constexpr std::array<const char*, 4> names__{"alpha", "beta1", "beta2",
+      "sigma"};
       const std::array<Eigen::Index, 4> constrain_param_sizes__{1, 1, 1, 1};
       const auto num_constrained_params__ = std::accumulate(
         constrain_param_sizes__.begin(), constrain_param_sizes__.end(), 0);

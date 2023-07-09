@@ -2,7 +2,6 @@ data{
     int<lower=0> N;  // Number of data points
     vector[N] x1_new;
     vector[N] x2_new;
-  
 }
 
 parameters {
@@ -14,10 +13,11 @@ parameters {
 
 model {
   // Priors
-  alpha ~ normal(20000, 1000);
+  alpha ~ normal(25000, 1000);
   beta1 ~ normal(-0.17, 0.01);
   beta2 ~ normal(20, 3);
-  sigma ~ normal(0,10);
+  sigma ~ normal(0, 10);
+
 }
 
 generated quantities {
@@ -30,4 +30,3 @@ generated quantities {
     y_generated[i] = poisson_rng(lambda);
   }
 }
-

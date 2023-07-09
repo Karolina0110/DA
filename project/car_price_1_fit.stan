@@ -15,8 +15,8 @@ parameters {
 model {
   // Priors
   alpha ~ normal(35000, 1000);
-  beta1 ~ normal(-0.17, 0.02);
-  beta2 ~ normal(20, 3);
+  beta1 ~ normal(-0.4, 0.1);
+  beta2 ~ normal(25, 2);
   sigma ~ normal(0, 10);
   
   // Likelihood
