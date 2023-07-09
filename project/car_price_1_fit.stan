@@ -6,17 +6,17 @@ data {
 }
 
 parameters {
-  real alpha;      // Intercept
+  real<lower=0> alpha;      // Intercept
   real beta1;      // Coefficient for predictor variable 1
-  real beta2;      // Coefficient for predictor variable 2
-  real<lower=0> sigma;  // Error term standard deviation
+  real<lower=0> beta2;      // Coefficient for predictor variable 2
+  real<lower=0> sigma;
 }
 
 model {
   // Priors
-  alpha ~ normal(30000, 1000);
-  beta1 ~ normal(200000, 1000);
-  beta2 ~ normal(2010, 2);
+  alpha ~ normal(35000, 1000);
+  beta1 ~ normal(-0.17, 0.02);
+  beta2 ~ normal(20, 3);
   sigma ~ normal(0, 10);
   
   // Likelihood
@@ -26,6 +26,6 @@ model {
 generated quantities {
   vector[N] y_generated;
   for (i in 1:N) {
-    y_generated[i] = fabs(normal_rng(alpha + beta1 * x1[i] + beta2 * x2[i], sigma));
+    y_generated[i] = normal_rng(alpha + beta1 * x1[i] + beta2 * x2[i], sigma);
   }
 }

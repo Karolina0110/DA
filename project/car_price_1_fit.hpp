@@ -10,17 +10,17 @@ using namespace stan::math;
 stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 22> locations_array__ = 
 {" (found before start of program)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 9, column 2 to column 13)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 9, column 2 to column 22)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 10, column 2 to column 13)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 11, column 2 to column 13)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 11, column 2 to column 22)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 12, column 2 to column 22)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 27, column 2 to column 24)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 29, column 4 to column 84)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 29, column 4 to column 78)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 28, column 17 to line 30, column 3)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 28, column 2 to line 30, column 3)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 17, column 2 to column 30)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 18, column 2 to column 31)",
- " (in '/home/DA/project/car_price_1_fit.stan', line 19, column 2 to column 26)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 18, column 2 to column 30)",
+ " (in '/home/DA/project/car_price_1_fit.stan', line 19, column 2 to column 24)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 20, column 2 to column 24)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 23, column 2 to column 53)",
  " (in '/home/DA/project/car_price_1_fit.stan', line 2, column 2 to column 17)",
@@ -185,24 +185,26 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
     try {
       local_scalar_t__ alpha = DUMMY_VAR__;
       current_statement__ = 1;
-      alpha = in__.template read<local_scalar_t__>();
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       local_scalar_t__ beta1 = DUMMY_VAR__;
       current_statement__ = 2;
       beta1 = in__.template read<local_scalar_t__>();
       local_scalar_t__ beta2 = DUMMY_VAR__;
       current_statement__ = 3;
-      beta2 = in__.template read<local_scalar_t__>();
+      beta2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       local_scalar_t__ sigma = DUMMY_VAR__;
       current_statement__ = 4;
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       {
         current_statement__ = 9;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 30000, 1000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 35000, 1000));
         current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, 200000, 1000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta1, -0.17, 0.02));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 2010, 2));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta2, 20, 3));
         current_statement__ = 12;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 10));
         current_statement__ = 13;
@@ -246,13 +248,15 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
     try {
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      alpha = in__.template read<local_scalar_t__>();
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       double beta1 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
       beta1 = in__.template read<local_scalar_t__>();
       double beta2 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      beta2 = in__.template read<local_scalar_t__>();
+      beta2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 4;
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
@@ -276,15 +280,13 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       for (int i = 1; i <= N; ++i) {
         current_statement__ = 6;
         stan::model::assign(y_generated,
-          stan::math::fabs(
-            stan::math::normal_rng(
-              ((alpha +
-                 (beta1 *
-                   stan::model::rvalue(x1, "x1", stan::model::index_uni(i))))
-                +
-                (beta2 *
-                  stan::model::rvalue(x2, "x2", stan::model::index_uni(i)))),
-              sigma, base_rng__)),
+          stan::math::normal_rng(
+            ((alpha +
+               (beta1 *
+                 stan::model::rvalue(x1, "x1", stan::model::index_uni(i)))) +
+              (beta2 *
+                stan::model::rvalue(x2, "x2", stan::model::index_uni(i)))),
+            sigma, base_rng__),
           "assigning variable y_generated", stan::model::index_uni(i));
       }
       out__.write(y_generated);
@@ -310,13 +312,13 @@ class car_price_1_fit_model final : public model_base_crtp<car_price_1_fit_model
       pos__ = 1;
       local_scalar_t__ alpha = DUMMY_VAR__;
       alpha = in__.read<local_scalar_t__>();
-      out__.write(alpha);
+      out__.write_free_lb(0, alpha);
       local_scalar_t__ beta1 = DUMMY_VAR__;
       beta1 = in__.read<local_scalar_t__>();
       out__.write(beta1);
       local_scalar_t__ beta2 = DUMMY_VAR__;
       beta2 = in__.read<local_scalar_t__>();
-      out__.write(beta2);
+      out__.write_free_lb(0, beta2);
       local_scalar_t__ sigma = DUMMY_VAR__;
       sigma = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, sigma);
