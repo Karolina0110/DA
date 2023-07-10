@@ -17,7 +17,8 @@ model {
   // Priors
   nu ~ gamma(2, 0.1);
   alpha ~ normal(35000, 1000);
-  beta1 ~ normal(0, 0.1); ~ normal(0, 0.1);
+  beta1 ~ normal(0, 0.1); 
+  beta2 ~ normal(0, 0.1);
   sigma ~ normal(0.1,0.2);
 }
 
@@ -31,4 +32,3 @@ generated quantities {
 
   }
 }
-
