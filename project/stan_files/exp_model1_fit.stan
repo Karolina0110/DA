@@ -1,0 +1,41 @@
+data {
+  int<lower=0> N;                         // Number of observations            // Values of the mileage variable
+  vector[N] production_year;          // Values of the production_year variable
+  vector[N] price_observed;           // Observed prices
+}
+
+parameters {
+  real alpha;
+  real beta;
+  real<lower=0> sigma;
+  real<lower=0> lambda;
+}
+
+transformed parameters {
+  vector[N] mu;
+  for (i in 1:N) {
+    mu[i] = alpha  + beta * production_year[i];
+  }
+}
+
+model {
+  alpha ~ normal(0.17, 0.02);
+  beta ~ normal(0.36, 0.02);
+  sigma ~ normal(0.15, 0.02);
+  lambda ~ normal(40, 0.2);
+
+  for (i in 1:N) {
+    price_observed[i] ~ exponential(mu[i] * lambda);
+  }
+}
+
+generated quantities {
+  vector[N] price_estimated;
+  vector[N] log_likelihood;
+
+  for (i in 1:N) {
+    price_estimated[i] = exponential_rng(mu[i] * lambda);
+    log_likelihood[i] = exponential_lpdf(price_observed[i] | (mu[i] * lambda));
+  }
+}
+
