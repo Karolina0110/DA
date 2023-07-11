@@ -34,10 +34,10 @@ model {
 
 generated quantities {
   vector[N] price_estimated;
-  vector[N] log_likelihood;
+  vector[N] log_lik;
 
   for (i in 1:N) {
     price_estimated[i] = exponential_rng(mu[i] * lambda);
-    log_likelihood[i] = exponential_lpdf(price_observed[i] | (mu[i] * lambda));
+    log_lik[i] = exponential_lpdf(price_observed[i] | (mu[i] * lambda));
   }
 }

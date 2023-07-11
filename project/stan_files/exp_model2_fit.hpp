@@ -20,9 +20,9 @@ static constexpr std::array<const char*, 34> locations_array__ =
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 18, column 17 to line 20, column 3)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 18, column 2 to line 20, column 3)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 36, column 2 to column 28)",
- " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 37, column 2 to column 27)",
+ " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 37, column 2 to column 20)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 40, column 4 to column 57)",
- " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 41, column 4 to column 79)",
+ " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 41, column 4 to column 72)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 39, column 17 to line 42, column 3)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 39, column 2 to line 42, column 3)",
  " (in '/home/DA/project/stan_files/exp_model2_fit.stan', line 24, column 2 to column 29)",
@@ -178,7 +178,7 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
       current_statement__ = 32;
       stan::math::validate_non_negative_index("price_estimated", "N", N);
       current_statement__ = 33;
-      stan::math::validate_non_negative_index("log_likelihood", "N", N);
+      stan::math::validate_non_negative_index("log_lik", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -342,7 +342,7 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
       Eigen::Matrix<double, -1, 1> price_estimated =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
-      Eigen::Matrix<double, -1, 1> log_likelihood =
+      Eigen::Matrix<double, -1, 1> log_lik =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
       current_statement__ = 15;
@@ -354,16 +354,16 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
               lambda), base_rng__),
           "assigning variable price_estimated", stan::model::index_uni(i));
         current_statement__ = 13;
-        stan::model::assign(log_likelihood,
+        stan::model::assign(log_lik,
           stan::math::exponential_lpdf<false>(
             stan::model::rvalue(price_observed, "price_observed",
               stan::model::index_uni(i)),
             (stan::model::rvalue(mu, "mu", stan::model::index_uni(i)) *
               lambda)),
-          "assigning variable log_likelihood", stan::model::index_uni(i));
+          "assigning variable log_lik", stan::model::index_uni(i));
       }
       out__.write(price_estimated);
-      out__.write(log_likelihood);
+      out__.write(log_lik);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -407,7 +407,7 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
   inline void get_param_names(std::vector<std::string>& names__) const {
     
     names__ = std::vector<std::string>{"alpha", "beta1", "beta2", "sigma",
-      "lambda", "mu", "price_estimated", "log_likelihood"};
+      "lambda", "mu", "price_estimated", "log_lik"};
     
     } // get_param_names() 
     
@@ -448,7 +448,7 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
       }
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "log_likelihood" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -482,7 +482,7 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
       }
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "log_likelihood" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -491,13 +491,13 @@ class exp_model2_fit_model final : public model_base_crtp<exp_model2_fit_model> 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"transformed_parameters\"},{\"name\":\"price_estimated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_likelihood\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"transformed_parameters\"},{\"name\":\"price_estimated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"transformed_parameters\"},{\"name\":\"price_estimated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_likelihood\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"mu\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"transformed_parameters\"},{\"name\":\"price_estimated\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
