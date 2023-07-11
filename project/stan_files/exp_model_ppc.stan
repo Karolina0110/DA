@@ -16,11 +16,11 @@ generated quantities {
   real beta1 = normal_rng(mu_b1, sig_b1);
   real beta2 = normal_rng(mu_b2, sig_b2);
   real sigma = normal_rng(0.15,0.02);
-  real lambda = 1 / normal_rng(40, 0.2);
+  real lambda = normal_rng(40, 0.2);
 
   for (i in 1:N) {
     real mu = alpha - beta1 * mileage[i] + beta2 * production_year[i];
-    price[i] = exponential_rng(mu/lambda);
+    price[i] = exponential_rng(mu*lambda);
     // price[i] = normal_rng(alpha + beta1 * mileage[i] + beta2 * production_year[i], sigma);
   }
 }
